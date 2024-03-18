@@ -29,7 +29,7 @@ def main():
     max_unused_package = max(packages, key=calculate_unused_weight)
     max_unused_weight = calculate_unused_weight(max_unused_package)
 
-    print("\nPodsumowanie:")
+    print("\nPodsumowanie")
     print(f"Liczba wysłanych paczek: {total_packages}")
     print(f"Suma wysłanych łącznie kilogramów: {total_weight}kg")
     print(f"Suma niewykorzystanych łącznie kilogramów: {unused_weight}kg")
