@@ -14,8 +14,7 @@ def get_valid_weight_input(prompt):
         try:
             weight = int(input(prompt))
             if weight < 1 or weight > 10:
-                print("Podano nieprawidłową wagę. Koniec dodawania paczek, dotychczasowe produkty zostaną wysłane.")
-                return None
+                print("Wprowadzono nieprawidłową wagę. Spróbuj jeszcze raz.")
             else:
                 return weight
         except ValueError:
@@ -27,10 +26,17 @@ def main():
     current_package = []
 
     for i in range(num_packages):
-        weight = get_valid_weight_input(f"Podaj wagę produktu {i + 1} [1-10 kg]: ")
+        if i == 0:
+            weight = get_valid_weight_input(f"Podaj wagę produktu {i + 1} [1-10 kg]: ")
+            if weight is None:
+                print("Wprowadzono nieprawidłową wagę. Spróbuj jeszcze raz.")
+                return
+        else:
+            weight = int(input(f"Podaj wagę produktu {i + 1} [1-10 kg]: "))
 
-        if weight is None:
-            break
+            if weight < 1 or weight > 10:
+                print("Wprowadzono nieprawidłową wagę. Koniec dodawania paczek, dotychczasowe produkty zostaną wysłane.")
+                break
 
         if sum(current_package) + weight > 20:
             packages.append(current_package[:])
